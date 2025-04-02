@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube-like Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .logo img {
+            height: 20px;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 60px;
+        }
+
+        .sidebar {
+            width: 240px;
+            height: calc(100vh - 60px);
+            background-color: white;
+            padding: 20px 0;
+            position: fixed;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(-190px);
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 24px;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .sidebar-item i {
+            margin-right: 24px;
+            font-size: 18px;
+        }
+
+        .main-content {
+            margin-left: 240px;
+            padding: 20px;
+            flex: 1;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.expanded {
+            margin-left: 50px;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .video-item {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="yt_1200.png" >
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-subscript"></i>
+                <span>Subscriptions</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-play"></i>
+                <span>Library</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="video-container">
+                <div class="video-item">Video 1</div>
+                <div class="video-item">Video 2</div>
+                <div class="video-item">Video 3</div>
+                <div class="video-item">Video 4</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.menu-icon').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+    </script>
+</body>
+</html>
